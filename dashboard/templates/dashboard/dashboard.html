@@ -1,0 +1,13 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+<div class="card">
+    <h2>Your Task Progress</h2>
+    {% if submissions %}
+        {% for s in submissions %}
+            <p><strong>{{ s.task.title }}</strong> — <span class="status-{{ s.status }}">{{ s.status }}</span></p>
+        {% endfor %}
+    {% else %}
+        <p>No submissions yet.</p>
+    {% endif %}
+</div>
+{% endblock %}
