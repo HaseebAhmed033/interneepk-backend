@@ -5,6 +5,13 @@ from .models import Task, Submission
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+#for DRF
+from rest_framework import viewsets
+from .serializers import TaskSerializer, SubmissionSerializer
+from .permissions import IsAdminOrStaffOrReadOnly
+
+
+
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -48,3 +55,18 @@ def home_view(request):
         return redirect('explore')
     return redirect('login')
 
+
+#------------------------------------------------
+
+
+#for DRF
+
+class TaskViewSet(viewsets.ModelViewSet):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+    permission_classes = [IsAdminOrStaffOrReadOnly]
+
+class SubmissionViewSet(viewsets.ModelViewSet):
+    queryset = Submission.objects.select_related('task', 'user').all()
+    serializer_class = SubmissionSerializer
+    permission_classes = [IsAdminOrStaffOrReadOnly]

@@ -17,7 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+#for DRF APi
+from rest_framework.routers import DefaultRouter
+from dashboard.views import TaskViewSet, SubmissionViewSet
+
+router = DefaultRouter()
+router.register(r'tasks', TaskViewSet)
+router.register(r'submissions', SubmissionViewSet)
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('dashboard.urls')),
+    path('api/', include(router.urls)),
 ]
