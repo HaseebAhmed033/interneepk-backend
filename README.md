@@ -19,6 +19,18 @@ Django backend for the Internee.pk internship platform. Handles user authenticat
 - Security: HTTPOnly cookies, CSRF protection, clickjacking protection, HTTPS-ready settings
 - Automated tests covering auth flow and submission creation
 
+
+
+## Features (Task 3)
+
+- Full REST API (CRUD) for Tasks and Submissions via Django REST Framework
+- Custom permission system — read access for all authenticated users, write access (create/update/delete) restricted to `admin`/`staff` roles
+- DRF ViewSets + Router for automatic URL generation (`/api/tasks/`, `/api/submissions/`)
+- Basic Authentication support for API testing (Postman-verified)
+- Automated tests covering role-based API permissions (staff can create, regular users blocked)
+
+
+
 ## Setup
 
 
