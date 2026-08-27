@@ -70,3 +70,12 @@ class SubmissionViewSet(viewsets.ModelViewSet):
     queryset = Submission.objects.select_related('task', 'user').all()
     serializer_class = SubmissionSerializer
     permission_classes = [IsAdminOrStaffOrReadOnly]
+
+
+from django.views.decorators.cache import cache_page
+
+@cache_page(60 * 5)  # cache for 5 minutes — reduces DB load for a rarely-changing list
+@api_view(['GET'])
+def api_tasks(request):
+    tasks = Task.objects.values('id', 'title', 'description')
+    return Response(list(tasks))

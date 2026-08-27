@@ -43,9 +43,11 @@ INSTALLED_APPS = [
     'rest_framework',   # DRF - needed later, register now
     'users',            # your new app
     'dashboard',
+    'debug_toolbar',  #for debugging and DB optimization
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -147,3 +149,15 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     ],
 }
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    }
+}
+
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]

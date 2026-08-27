@@ -14,7 +14,6 @@ Django backend for the Internee.pk internship platform. Handles user authenticat
 - Session-based authentication (login/logout)
 - Explore page: browse tasks, submit progress
 - Dashboard page: view your submission status
-- Minimal REST endpoint: `GET /api/tasks/` returns task list as JSON
 - Query optimization via `select_related` to avoid N+1 queries
 - Security: HTTPOnly cookies, CSRF protection, clickjacking protection, HTTPS-ready settings
 - Automated tests covering auth flow and submission creation
